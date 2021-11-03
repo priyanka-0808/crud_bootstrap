@@ -1,0 +1,39 @@
+<div class="alert alert-success">
+<%= notice %>
+</div>
+
+<h1>Images</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Preview</th>
+      <th>Category</th>
+      <th>Type</th>
+      <th style="text-align: right">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @images.each do |image| %>
+      <tr>
+        <td><%= image.title %></td>
+        <td><%= image.description %></td>
+        <td><%= image.media.attached? ? image_tag(url_for(image.media), style: 'height:auto;width:100px;') : "Missing Image" %></td>
+        <td><%= image.category %></td>
+        <td><%= image.is_free ? 'Free' : 'Paid' %></td>
+        <td style="text-align: right">
+          <%= link_to '<i class="fa fa-table"></i>'.html_safe, image %>
+          <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_image_path(image) %>
+          <%= link_to '<i class="fa fa-trash"></i>'.html_safe, image, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Image', new_image_path, {class: "btn btn-primary"} %>

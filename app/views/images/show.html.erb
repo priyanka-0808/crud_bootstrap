@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card" style="width:400px">
+  <img class="card-img-top" src="<%= url_for(@image.media) %>" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title"><%= @image.title %></h4>
+    <p class="card-text"><%= @image.description %></p>
+    <p class="card-text">Category: <%= @image.category %></p>
+    <p class="card-text">Price: <%= @image.price %></p>
+    <p class="card-text">Free?: <%= @image.is_free ? 'Yes' : 'No' %></p>
+    <p class="card-text">Salable: <%= @image.salable ? "Yes" : "No" %></p>
+    <%= link_to 'Edit', edit_image_path(@image), {class: "btn btn-primary"} %>
+    <%= link_to 'Back', images_path, {class: "btn btn-primary"}  %>
+  </div>
+</div>

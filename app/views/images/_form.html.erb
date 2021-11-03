@@ -1,0 +1,47 @@
+<%= form_with(model: image) do |form| %>
+  <% if image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+      <ul>
+        <% image.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3 mt-3">
+    <%= form.label :title,  class: "form-label" %>
+    <%= form.text_field :title,  class: "form-control"   %>
+  </div>
+
+  <div class="mb-3 mt-3">
+    <%= form.label :description,  class: "form-label"  %>
+    <%= form.text_area :description,  class: "form-control" %>
+  </div>
+
+  <div class="mb-3 mt-3">
+    <%= form.label :media,  class: "form-label"  %>
+    <%= form.file_field :media, class: "form-control" %>
+  </div>
+
+  <div class="mb-3 mt-3">
+    <%= form.label :category,  class: "form-label"  %>
+    <%= form.select :category, Image.category.options, {}, { class: 'form-select' } %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= form.label :is_free,  class: "form-check-label"  %>
+    <%= form.check_box :is_free, class: "form-check-input" %>
+  </div>
+
+  <div class="mb-3 mt-3">
+    <%= form.label :price,  class: "form-label"  %>
+    <%= form.text_field :price, class: "form-control"  %>
+  </div>
+
+  <div class="btn">
+    <%= form.submit %>
+  </div>
+<% end %>
